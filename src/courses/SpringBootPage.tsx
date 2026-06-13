@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-import Roadmap from "../components/courses/Roadmap";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 
@@ -12,13 +11,6 @@ const curriculum = [
   "Database Integration with Spring Data JPA",
   "Spring Boot Security & JWT",
   "Application Testing, Actuator, & Deployment",
-];
-
-const roadmapSteps = [
-  "Spring Core",
-  "Spring Boot Starter",
-  "REST APIs",
-  "Spring Data JPA",
 ];
 
 export default function SpringBootPage() {
@@ -140,8 +132,6 @@ export default function SpringBootPage() {
         </section>
 
         {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
-
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">
           <div className="container mx-auto max-w-4xl px-6">

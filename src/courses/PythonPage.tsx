@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-import Roadmap from "../components/courses/Roadmap";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 const curriculum = [
@@ -13,12 +12,7 @@ const curriculum = [
   "Task Automation & Scripting Projects",
 ];
 
-const roadmapSteps = [
-  "Python Basics",
-  "FastAPI/Flask",
-  "Automation Scripts",
-  "Database Integration",
-];
+
 
 export default function PythonPage() {
   return (
@@ -138,8 +132,6 @@ export default function PythonPage() {
           </div>
         </section>
 
-        {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
 
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">

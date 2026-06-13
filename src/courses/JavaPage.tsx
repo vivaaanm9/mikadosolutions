@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-import Roadmap from "../components/courses/Roadmap";
+
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 const curriculum = [
@@ -11,13 +11,6 @@ const curriculum = [
   "Java Collections Framework",
   "Multithreading & Concurrency",
   "Java 8 Features (Lambda, Stream API)",
-];
-
-const roadmapSteps = [
-  "Java Basics",
-  "OOP Concepts",
-  "Collections & Generics",
-  "Java 8 Features",
 ];
 
 export default function JavaPage() {
@@ -139,7 +132,6 @@ export default function JavaPage() {
         </section>
 
         {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
 
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">

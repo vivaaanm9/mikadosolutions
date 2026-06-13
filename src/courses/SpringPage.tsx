@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-import Roadmap from "../components/courses/Roadmap";
+
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 const curriculum = [
@@ -13,12 +13,7 @@ const curriculum = [
   "Spring MVC for Web Development",
 ];
 
-const roadmapSteps = [
-  "Core Java",
-  "Spring Core",
-  "Dependency Injection",
-  "Spring MVC",
-];
+
 
 export default function SpringPage() {
   return (
@@ -139,7 +134,6 @@ export default function SpringPage() {
         </section>
 
         {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
 
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">

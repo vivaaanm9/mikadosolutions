@@ -5,7 +5,6 @@ import PlacementStats from "../components/placements/PlacementStats";
 import CourseGrid from "../components/courses/CourseGrid";
 import TestimonialSlider from "../components/ui/TestimonialSlider";
 import Marquee from "../components/ui/Marquee";
-import Roadmap from "../components/courses/Roadmap";
 import FounderStory from "../components/common/FounderStory";
 import SuccessTimeline from "../components/placements/SuccessTimeline";
 import Title from "../components/common/Title";
@@ -158,8 +157,6 @@ export default function HomePage() {
       <PlacementStats />
       <SuccessTimeline/>
       {/* ROADMAP */}
-      <Roadmap />
-
       {/* COURSES */}
       <section className="py-24">
         <div className="container mx-auto px-6">

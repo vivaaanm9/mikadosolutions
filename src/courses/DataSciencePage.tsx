@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
-import Roadmap from "../components/courses/Roadmap";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
-
+import SEO from "../components/common/SEO";
 const curriculum = [
   "Python Programming for Data Science",
   "Data Analysis with NumPy & Pandas",
@@ -13,12 +12,6 @@ const curriculum = [
   "Artificial Intelligence & Model Deployment",
 ];
 
-const roadmapSteps = [
-  "Python Basics",
-  "Data Analysis",
-  "Machine Learning",
-  "AI & Deep Learning",
-];
 
 export default function DataSciencePage() {
   return (
@@ -139,7 +132,7 @@ export default function DataSciencePage() {
         </section>
 
         {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
+
 
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">

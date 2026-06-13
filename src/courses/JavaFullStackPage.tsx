@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-import Roadmap from "../components/courses/Roadmap";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 const curriculum = [
@@ -16,16 +15,6 @@ const curriculum = [
   "AWS",
 ];
 
-const roadmapSteps = [
-  "Core Java",
-  "Advanced Java",
-  "Spring",
-  "Spring Boot",
-  "Microservices",
-  "React",
-  "Docker",
-  "AWS",
-];
 
 export default function JavaFullStackPage() {
   return (
@@ -146,7 +135,6 @@ export default function JavaFullStackPage() {
         </section>
 
         {/* ROADMAP SECTION */}
-        <Roadmap steps={roadmapSteps} />
 
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">
