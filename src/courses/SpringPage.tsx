@@ -4,7 +4,6 @@ import SEO from "../components/common/SEO";
 import Roadmap from "../components/courses/Roadmap";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
-
 const curriculum = [
   "Spring Framework Overview & Architecture",
   "Dependency Injection & Inversion of Control",

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -8,159 +8,266 @@ export default function ContactPage() {
     message: "",
   });
 
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [errorMessage, setErrorMessage] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [errors, setErrors] = useState<
+    Record<string, string>
+  >({});
+
+  const [errorMessage, setErrorMessage] =
+    useState("");
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement
+    >
+  ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear validation error when user typing
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
     if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
+      setErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
     }
   };
 
   const validate = () => {
-    const newErrors: Record<string, string> = {};
+    const newErrors: Record<
+      string,
+      string
+    > = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = "Full name is required";
+      newErrors.name =
+        "Full name is required";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email address is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email =
+        "Email is required";
+    } else if (
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        formData.email
+      )
+    ) {
+      newErrors.email =
+        "Enter a valid email";
     }
 
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
-    } else if (!/^\+?[0-9\s-]{10,15}$/.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number (10-15 digits)";
+      newErrors.phone =
+        "Phone number is required";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Message cannot be empty";
+      newErrors.message =
+        "Message is required";
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+
+    return (
+      Object.keys(newErrors).length === 0
+    );
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (
+    e: React.FormEvent
+  ) => {
     e.preventDefault();
+
     if (!validate()) return;
 
     setStatus("submitting");
-    setErrorMessage("");
 
-    const scriptUrl = import.meta.env.VITE_CONTACT_FORM_SHEETS_URL;
+    const scriptUrl =
+      import.meta.env
+        .VITE_CONTACT_FORM_SHEETS_URL;
 
     if (!scriptUrl) {
       setStatus("error");
+
       setErrorMessage(
-        "Google Sheets Web App URL is not configured. Please define VITE_CONTACT_FORM_SHEETS_URL in your .env file."
+        "Google Sheets URL is not configured."
       );
+
       return;
     }
 
     try {
-      // Using 'no-cors' mode to avoid browser CORS issues with Google Apps Script redirect.
-      // Since it's 'no-cors', the response status will be 0 and opaque, but Google Sheets will successfully receive and store the data.
       await fetch(scriptUrl, {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type":
+            "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(
+          formData
+        ),
       });
 
       setStatus("success");
-      setFormData({ name: "", email: "", phone: "", message: "" });
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error(error);
+
       setStatus("error");
-      setErrorMessage("Failed to send message. Please check your internet connection and try again.");
+
+      setErrorMessage(
+        "Unable to send message. Please try again."
+      );
     }
   };
 
   return (
     <main className="pt-20">
-      <section className="py-32">
+      <section className="hero-bg py-24">
         <div className="container mx-auto px-6">
           <div
             className="
             mx-auto
-            max-w-6xl
+            max-w-7xl
             rounded-[40px]
             border
-            border-white/20
-            bg-white/70
-            p-10
-            shadow-2xl
-            backdrop-blur-xl
+            border-slate-200
+            bg-white
+            p-8
+            shadow-[0_20px_60px_rgba(91,75,154,0.15)]
+            md:p-12
           "
           >
-            <div className="grid gap-10 md:grid-cols-2">
+            <div className="grid gap-16 lg:grid-cols-2">
+              {/* LEFT SIDE */}
               <div>
-                <h1 className="text-5xl font-bold text-slate-800">
-                  Contact Us
+                <span
+                  className="
+                  rounded-full
+                  bg-[#F3F1FC]
+                  px-4
+                  py-2
+                  text-sm
+                  font-semibold
+                  text-[#5B4B9A]
+                "
+                >
+                  Get In Touch
+                </span>
+
+                <h1
+                  className="
+                  mt-6
+                  text-5xl
+                  font-black
+                  md:text-6xl
+                "
+                >
+                  <span className="gradient-text">
+                    Contact Us
+                  </span>
                 </h1>
 
-                <p className="mt-6 text-slate-600 text-lg leading-relaxed">
-                  Let's discuss your learning journey. Fill out the form, and your details will be saved directly to our contact sheets for our team to reach out to you.
+                <p
+                  className="
+                  mt-6
+                  text-lg
+                  leading-relaxed
+                  text-slate-600
+                "
+                >
+                  Ready to start your
+                  career journey with
+                  Mikado Solutions?
+                  Reach out and our
+                  team will guide you.
                 </p>
 
-                <div className="mt-8 space-y-4">
-                  <div className="flex items-center space-x-3 text-slate-600">
-                    <span className="font-semibold text-blue-600">Email:</span>
-                    <span>info@mikadosolutions.com</span>
+                <div className="mt-10 space-y-5">
+                  <div className="rounded-2xl border border-slate-200 p-5">
+                    <h4 className="font-semibold text-[#5B4B9A]">
+                      Email
+                    </h4>
+
+                    <p className="mt-1 text-slate-600">
+                      info@mikadosolutions.com
+                    </p>
                   </div>
-                  <div className="flex items-center space-x-3 text-slate-600">
-                    <span className="font-semibold text-blue-600">Website:</span>
-                    <span>www.mikadosolutions.com</span>
+
+                  <div className="rounded-2xl border border-slate-200 p-5">
+                    <h4 className="font-semibold text-[#5B4B9A]">
+                      Phone
+                    </h4>
+
+                    <p className="mt-1 text-slate-600">
+                      +91 9321253357 
+                    </p>
+                  </div>
+
+                  <div className="rounded-2xl border border-slate-200 p-5">
+                    <h4 className="font-semibold text-[#5B4B9A]">
+                      Location
+                    </h4>
+
+                    <p className="mt-1 text-slate-600">
+                      Mumbai,
+                      Maharashtra,
+                      India
+                    </p>
                   </div>
                 </div>
               </div>
 
+              {/* FORM */}
               <div>
                 {status === "success" && (
-                  <div className="mb-6 rounded-xl bg-emerald-50 border border-emerald-200 p-4 text-emerald-800 animate-fadeIn">
-                    <p className="font-semibold">Message sent successfully!</p>
-                    <p className="text-sm mt-1">Thank you for contacting us. We will get back to you shortly.</p>
-                    <button 
-                      onClick={() => setStatus("idle")} 
-                      className="mt-3 text-xs font-semibold text-emerald-600 hover:text-emerald-800 underline"
-                    >
-                      Send another message
-                    </button>
+                  <div className="mb-6 rounded-2xl border border-green-200 bg-green-50 p-4 text-green-700">
+                    Message submitted
+                    successfully.
                   </div>
                 )}
 
                 {status === "error" && (
-                  <div className="mb-6 rounded-xl bg-rose-50 border border-rose-200 p-4 text-rose-800 animate-fadeIn">
-                    <p className="font-semibold">Oops! Something went wrong.</p>
-                    <p className="text-sm mt-1">{errorMessage}</p>
+                  <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 p-4 text-red-700">
+                    {errorMessage}
                   </div>
                 )}
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
                   <div>
                     <input
                       type="text"
                       name="name"
-                      value={formData.name}
-                      onChange={handleChange}
+                      value={
+                        formData.name
+                      }
+                      onChange={
+                        handleChange
+                      }
                       placeholder="Full Name"
-                      disabled={status === "submitting"}
-                      className={`w-full rounded-xl border p-4 bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        errors.name ? "border-rose-400" : "border-slate-200"
-                      }`}
+                      className="w-full rounded-2xl border border-slate-200 p-4 focus:border-[#5B4B9A] focus:outline-none"
                     />
+
                     {errors.name && (
-                      <p className="mt-1 text-xs text-rose-500 font-medium">{errors.name}</p>
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.name}
+                      </p>
                     )}
                   </div>
 
@@ -168,16 +275,20 @@ export default function ContactPage() {
                     <input
                       type="email"
                       name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Email"
-                      disabled={status === "submitting"}
-                      className={`w-full rounded-xl border p-4 bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        errors.email ? "border-rose-400" : "border-slate-200"
-                      }`}
+                      value={
+                        formData.email
+                      }
+                      onChange={
+                        handleChange
+                      }
+                      placeholder="Email Address"
+                      className="w-full rounded-2xl border border-slate-200 p-4 focus:border-[#5B4B9A] focus:outline-none"
                     />
+
                     {errors.email && (
-                      <p className="mt-1 text-xs text-rose-500 font-medium">{errors.email}</p>
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.email}
+                      </p>
                     )}
                   </div>
 
@@ -185,70 +296,67 @@ export default function ContactPage() {
                     <input
                       type="tel"
                       name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="Phone"
-                      disabled={status === "submitting"}
-                      className={`w-full rounded-xl border p-4 bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        errors.phone ? "border-rose-400" : "border-slate-200"
-                      }`}
+                      value={
+                        formData.phone
+                      }
+                      onChange={
+                        handleChange
+                      }
+                      placeholder="Phone Number"
+                      className="w-full rounded-2xl border border-slate-200 p-4 focus:border-[#5B4B9A] focus:outline-none"
                     />
+
                     {errors.phone && (
-                      <p className="mt-1 text-xs text-rose-500 font-medium">{errors.phone}</p>
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.phone}
+                      </p>
                     )}
                   </div>
 
                   <div>
                     <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
                       rows={5}
-                      placeholder="Message"
-                      disabled={status === "submitting"}
-                      className={`w-full rounded-xl border p-4 bg-white/50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all ${
-                        errors.message ? "border-rose-400" : "border-slate-200"
-                      }`}
+                      name="message"
+                      value={
+                        formData.message
+                      }
+                      onChange={
+                        handleChange
+                      }
+                      placeholder="Tell us about your goals..."
+                      className="w-full rounded-2xl border border-slate-200 p-4 focus:border-[#5B4B9A] focus:outline-none"
                     />
+
                     {errors.message && (
-                      <p className="mt-1 text-xs text-rose-500 font-medium">{errors.message}</p>
+                      <p className="mt-1 text-sm text-red-500">
+                        {errors.message}
+                      </p>
                     )}
                   </div>
 
                   <button
                     type="submit"
-                    disabled={status === "submitting"}
-                    className={`
+                    disabled={
+                      status ===
+                      "submitting"
+                    }
+                    className="
                     w-full
-                    rounded-xl
-                    bg-blue-600
+                    rounded-2xl
+                    bg-[#5B4B9A]
                     px-8
                     py-4
-                    text-white
                     font-semibold
-                    hover:bg-blue-700
-                    active:bg-blue-800
-                    transition-colors
-                    cursor-pointer
-                    disabled:bg-blue-400
-                    disabled:cursor-not-allowed
-                    flex
-                    items-center
-                    justify-center
-                    space-x-2
-                  `}
+                    text-white
+                    transition
+                    hover:bg-[#46387C]
+                    disabled:opacity-50
+                  "
                   >
-                    {status === "submitting" ? (
-                      <>
-                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                        </svg>
-                        <span>Sending Message...</span>
-                      </>
-                    ) : (
-                      <span>Send Message</span>
-                    )}
+                    {status ===
+                    "submitting"
+                      ? "Sending..."
+                      : "Send Message"}
                   </button>
                 </form>
               </div>

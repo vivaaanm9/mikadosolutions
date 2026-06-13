@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
-import SEO from "../../components/common/SEO";
-import Roadmap from "../../components/courses/Roadmap";
-import Curriculum from "../../components/courses/Curriculum";
-import GlassCard from "../../components/common/GlassCard";
+import SEO from "../components/common/SEO";
+import Roadmap from "../components/courses/Roadmap";
+import Curriculum from "../components/courses/Curriculum";
+import GlassCard from "../components/common/GlassCard";
 
 const curriculum = [
   "Introduction to Spring Boot",
