@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-
+import SalaryGrowthCalculator from "../components/courses/SalaryGrowthCalculator";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 const curriculum = [
@@ -142,7 +142,7 @@ export default function SpringPage() {
             <Curriculum topics={curriculum} />
           </div>
         </section>
-
+        <SalaryGrowthCalculator />
         {/* FOOTER CTA */}
         <section className="py-24">
           <div className="container mx-auto px-6">

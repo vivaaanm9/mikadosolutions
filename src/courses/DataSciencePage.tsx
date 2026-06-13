@@ -3,6 +3,7 @@ import { Clock, BookOpen, Users, Award } from "lucide-react";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 import SEO from "../components/common/SEO";
+import SalaryGrowthCalculator from "../components/courses/SalaryGrowthCalculator";
 const curriculum = [
   "Python Programming for Data Science",
   "Data Analysis with NumPy & Pandas",
@@ -141,7 +142,7 @@ export default function DataSciencePage() {
             <Curriculum topics={curriculum} />
           </div>
         </section>
-
+        <SalaryGrowthCalculator/>
         {/* FOOTER CTA */}
         <section className="py-24">
           <div className="container mx-auto px-6">

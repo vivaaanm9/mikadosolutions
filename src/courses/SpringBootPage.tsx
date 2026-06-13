@@ -3,7 +3,7 @@ import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
-
+import SalaryGrowthCalculator from "../components/courses/SalaryGrowthCalculator";
 const curriculum = [
   "Introduction to Spring Boot",
   "Auto-Configuration & Spring Starters",
@@ -139,7 +139,7 @@ export default function SpringBootPage() {
             <Curriculum topics={curriculum} />
           </div>
         </section>
-
+        <SalaryGrowthCalculator />
         {/* FOOTER CTA */}
         <section className="py-24">
           <div className="container mx-auto px-6">
@@ -176,6 +176,7 @@ export default function SpringBootPage() {
               </Link>
             </div>
           </div>
+          <SalaryGrowthCalculator />
         </section>
       </main>
     </>

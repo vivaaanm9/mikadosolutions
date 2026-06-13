@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Clock, BookOpen, Users, Award } from "lucide-react";
 import SEO from "../components/common/SEO";
-
+import SalaryGrowthCalculator from "../components/courses/SalaryGrowthCalculator";
 import Curriculum from "../components/courses/Curriculum";
 import GlassCard from "../components/common/GlassCard";
 
@@ -130,7 +130,6 @@ export default function MicroservicesPage() {
             </div>
           </div>
         </section>
-
         {/* ROADMAP SECTION */}
         {/* CURRICULUM SECTION */}
         <section className="py-24 bg-slate-50/50">
@@ -139,7 +138,7 @@ export default function MicroservicesPage() {
             <Curriculum topics={curriculum} />
           </div>
         </section>
-
+                <SalaryGrowthCalculator/>
         {/* FOOTER CTA */}
         <section className="py-24">
           <div className="container mx-auto px-6">
